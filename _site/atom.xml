@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>سالار مقدم</title>
- <link href="http://salarmgh.github.io/atom.xml" rel="self"/>
- <link href="http://salarmgh.github.io/"/>
- <updated>2016-05-27T15:14:30+04:30</updated>
- <id>http://salarmgh.github.io</id>
+ <link href="http://localhost/atom.xml" rel="self"/>
+ <link href="http://localhost/"/>
+ <updated>2016-05-27T16:01:44+04:30</updated>
+ <id>http://localhost</id>
  <author>
    <name>Salar Moghaddam</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>سلام دنیا</title>
-   <link href="http://salarmgh.github.io/2016/05/12/%D8%B3%D8%A7%D9%84%D8%A7%D8%B1-%D9%85%D9%82%D8%AF%D9%85/"/>
+   <link href="http://localhost/2016/05/12/%D8%B3%D8%A7%D9%84%D8%A7%D8%B1-%D9%85%D9%82%D8%AF%D9%85/"/>
    <updated>2016-05-12T00:00:00+04:30</updated>
-   <id>http://salarmgh.github.io/2016/05/12/سالار مقدم</id>
+   <id>http://localhost/2016/05/12/سالار مقدم</id>
    <content type="html">&lt;p&gt;معمولا سنت بر اینه که اولین پست وبلاگ، سلام دنیا باشه. منم صرفا نخواستم سنت شکنی کرده باشم! :)&lt;br /&gt;
 صفحه ی درباره ی من رو هم بعدا می نویسم.&lt;/p&gt;
 </content>
