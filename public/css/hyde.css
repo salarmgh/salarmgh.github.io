@@ -93,6 +93,7 @@ html {
 /* Sidebar nav */
 .sidebar-nav {
   margin-bottom: 1rem;
+  text-align: center;
 }
 .sidebar-nav-item {
   display: block;

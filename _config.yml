@@ -6,7 +6,7 @@ permalink:        pretty
 title:            سالار مقدم
 tagline:          'SalarMgh'
 description:      '*nix Sysadmin & DevOps'
-url:              http://localhost
+url:              http://salarmgh.github.io
 baseurl:          /
 
 author:

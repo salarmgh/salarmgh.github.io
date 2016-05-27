@@ -11,15 +11,23 @@
     </div>
 
     <nav class="sidebar-nav">
+      <a>درباره ی من</a><br />
+      <a href="mailto:salar.mgh@gmail.com">Email</a>
+      <a href="https://twitter.com/salarmgh">Twitter</a>
+      <a href="https://instagram.com/salarmgh">Instagram</a>
+      <a href="https://github.com/salarmgh">Github</a>
+      <a href="http://salarmgh.github.io/rss.xml">RSS</a>
+{% comment %}
       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">خانه</a>
 
-      {% comment %}
+      
         The code below dynamically generates a sidebar nav of pages with
         `layout: page` in the front-matter. See readme for usage.
-      {% endcomment %}
+      
 
       {% assign pages_list = site.pages %}
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">درباره ی من</a>
+{% endcomment %}
     </nav>
 
     <p class="copyright">&copy; {{ site.time | date: '%Y' }}. تمامی حقوق محفوظ است.</p>
