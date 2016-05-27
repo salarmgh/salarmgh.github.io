@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>سالار مقدم</title>
-    <description>یه سیس ادمین دیگه</description>
-    <link>http://localhost//</link>
-    <atom:link href="http://localhost//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 May 2016 13:14:54 +0430</pubDate>
-    <lastBuildDate>Fri, 27 May 2016 13:14:54 +0430</lastBuildDate>
+    <description>*nix Sysadmin &amp; DevOps</description>
+    <link>http://salarmgh.github.io//</link>
+    <atom:link href="http://salarmgh.github.io//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 27 May 2016 15:14:30 +0430</pubDate>
+    <lastBuildDate>Fri, 27 May 2016 15:14:30 +0430</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -15,8 +15,8 @@
 صفحه ی درباره ی من رو هم بعدا می نویسم.&lt;/p&gt;
 </description>
         <pubDate>Thu, 12 May 2016 00:00:00 +0430</pubDate>
-        <link>http://localhost//2016/05/12/%D8%B3%D8%A7%D9%84%D8%A7%D8%B1-%D9%85%D9%82%D8%AF%D9%85/</link>
-        <guid isPermaLink="true">http://localhost//2016/05/12/%D8%B3%D8%A7%D9%84%D8%A7%D8%B1-%D9%85%D9%82%D8%AF%D9%85/</guid>
+        <link>http://salarmgh.github.io//2016/05/12/%D8%B3%D8%A7%D9%84%D8%A7%D8%B1-%D9%85%D9%82%D8%AF%D9%85/</link>
+        <guid isPermaLink="true">http://salarmgh.github.io//2016/05/12/%D8%B3%D8%A7%D9%84%D8%A7%D8%B1-%D9%85%D9%82%D8%AF%D9%85/</guid>
         
         
       </item>
