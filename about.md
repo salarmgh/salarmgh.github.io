@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: درباره ی من
 ---
 
 <p class="message">
