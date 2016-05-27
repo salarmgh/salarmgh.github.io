@@ -84,11 +84,9 @@ html {
 }
 
 .sidebar-about img {
-	position: relative;
-	top: -1rem;
 	width: 200px;
 	height: 200px;
-	margin: 0 auto;
+	margin: auto;
 }
 
 /* Sidebar nav */
