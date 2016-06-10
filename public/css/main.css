@@ -1,14 +1,21 @@
 @font-face {
-  font-family: Vazir;
-  src: url('/public/fonts/Vazir.ttf') format('truetype');
+  font-family: Samim;
+  src: url('/public/fonts/Samim.eot');
+  src: url('/public/fonts/Samim.eot?#iefix') format('embedded-opentype'),
+       url('/public/fonts/Samim.woff') format('woff'),
+       url('/public/fonts/Samim.ttf') format('truetype');
   font-weight: normal;
 }
 
 @font-face {
-  font-family: Vazir;
-  src: url('/public/fonts/Vazir-Bold.ttf') format('truetype');
+  font-family: Samim;
+  src: url('/public/fonts/Samim-Bold.eot');
+  src: url('/public/fonts/Samim-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/public/fonts/Samim-Bold.woff') format('woff'),
+       url('/public/fonts/Samim-Bold.ttf') format('truetype');
   font-weight: bold;
 }
+
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -356,7 +363,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "Vazir", Helvetica, Arial, sans-serif;
+  font-family: "Samim", Helvetica, Arial, sans-serif;
   color: #ccc;
   text-align: center;
 }
@@ -461,7 +468,7 @@ a.pagination-item:hover {
 .css .o + .nt,
 .css .nt + .nt { color: #999; }
 html {
-  font-family: "Vazir", "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: "Samim", "PT Sans", Helvetica, Arial, sans-serif;
 }
 @media (min-width: 48em) {
   html {
@@ -603,4 +610,9 @@ a.sidebar-nav-item:focus {
 .copyright {
   font-size: .7rem;
   text-align: center;
+}
+code {
+	direction: ltr;
+	text-align: left;
+	display: block;
 }
