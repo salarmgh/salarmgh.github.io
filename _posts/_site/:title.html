@@ -1,0 +1,145 @@
+<h3>DNS چیست؟ </h3>
+<p>DNS مخفف Domain Name Service می باشد که جهت ترجمه ی آدرس FQDN به آدرس IP استفاده می شود.</p>
+<h3>نصب Bind</h3>
+<p>در گنو/لینوکس سرویس DNS توسط بسته ی Bind فراهم شده.</p>
+<p>نصب Bind در Debian:</p>
+<p dir="ltr">
+<code>
+# apt install bind9
+</code>
+</p>
+<p>نصب در CentOS و مشتقات آن</p>
+<p dir="ltr">
+<code>
+# apt install bind
+</code>
+</p>
+<p>مکان فایل پیکربندی در Debian:</p>
+<p dir="ltr">
+<code>
+/etc/named/named.conf
+</code>
+</p>
+<p>مکان فایل پیکربندی در CentOS:</p>
+<p dir="ltr">
+<code>
+/etc/named.conf
+</code>
+</p>
+<!--excerpt-->
+<h3>پیکربندی DNS Master</h3>
+<p dir="ltr">
+<code>
+# vi /etc/named/named.conf # or /etc/named.conf</code>
+<code>zone "local.zone" {</code>
+<code>type master;</code>
+<code>file "/var/named/local.zone.db";</code>
+<code>};</code>
+</p>
+<p><strong>Zone</strong> نام ناحیه یا دامنه می باشد.</p>
+<p><strong>Type</strong>، نوع DNS سرور را تعیین می کند.</p>
+<p><strong>File</strong>، مسیر پیکربندی ناحیه را تعیین می کند.</p>
+<p>پیکربندی ناحیه:</p>
+<p dir="ltr">
+<code>
+# vi /var/named/local.zone.db</code>
+<code>$TTL 1D local.zone. IN SOA ns1.local.zone. root.local.zone. (</code>
+<code>3 ; serial</code>
+<code>1D ; refresh</code>
+<code>1H ; retry</code>
+<code>1W ; expire</code>
+<code>3H ) ; minimum</code>
+<code>NS ns1.local.zone.</code>
+<code>NS ns2.local.zone.</code>
+<code>ns2 A 192.168.1.2</code>
+<code>ns1 A 192.168.1.1</code>
+<code>@ A 192.168.1.1</code>
+<code>c1 A 192.168.1.1</code>
+<code>c2 A 192.168.1.2</code>
+<code>c3 A 192.168.1.3</code>
+<code>c4 A 192.168.1.4</code>
+</p>
+<ul>
+<li>TTL 1D زمان Time To Live را تعیین می کند که در اینجا یک روز است.</li>
+<li>local.zone. نام دامنه را مشخص می کند.</li>
+<li>ns1.local.zone نام Name Server را مشخص می کند.</li>
+<li>root.local.zone ایمیل راهبر سیستم را تعیین می کند که در اینجا root@local.zone می باشد.</li>
+</ul>
+<p>بقیه ی رکورد های SOA مشخص هستند، بر اساس نیازتان تغییرشان بدید.</p>
+<ul>
+<li>NS سرور Name Server را مشخص می کند.</li>
+<li>A آدرس دامنه را به IP تبدیل می کند.</li>
+</ul>
+<p dir="ltr">
+<code>
+# systemctl restart bind9
+</code>
+</p>
+<p>با دستور بالا سرویس bind را دوباره راه اندازی می کنیم تا تغییرات اعمال شود.</p>
+<p>اگر خطایی مبنی بر نداشتن دسترسی دارید، با کد زیر آن را برطرف نمایید:</p>
+<p dir="ltr">
+<code>
+# chown named:named /var/named
+</code>
+</p>
+<h3>پیکربندی DNS Slave</h3>
+<p>به zone سرور Master کد زیر را اضافه کنید</p>
+<p dir="ltr">
+<code># vi /etc/named.conf # vi /etc/named/named.conf</code>
+<code>allow-transfer {192.168.1.2;};</code>
+</p>
+<p>در سرور Slave</p>
+<p dir="ltr">
+<code># vi /etc/named.conf # vi /etc/named/named.conf</code>
+<code>zone "local.zone" {</code>
+<code>type slave;</code>
+<code>masters {192.168.1.1;};</code>
+<code>file "/var/named/local.zone.db";</code>
+<code>};</code>
+</p>
+<h3>پیکربندی DNS Forwarder</h3>
+<p dir="ltr">
+<code># vi /etc/named/named.conf # or /etc/named.conf</code>
+<code>zone "local.zone" {</code>
+<code>type forward;</code>
+<code>forwarders {192.168.1.1;};</code>
+<code>};
+</code>
+</p>
+<h3>پیکربندی Reverse DNS</h3>
+<p>این پیکربندی آدرس IP را به آدرس Domain ترجمه می کند</p>
+<p dir="rtl">
+<code># vi /etc/named/named.conf # or vi /etc/named.conf</code>
+<code>zone "1.168.192.in-addr.arpa" {</code>
+<code>type master;</code>
+<code>file "/var/named/local.zone.reverse.db";</code>
+<code>};</code>
+<p>پایگاه داده</p>
+<code># vi /var/named/local.zone.reverse.db</code>
+<code>$TTL 1D</code>
+<code>1.168.192.in-addr.arpa.</code>
+<code>IN SOA ns1.local.zone.</code>
+<code>root.local.zone. (</code>
+<code>3 ; serial</code>
+<code>1D ; refresh</code>
+<code>1H ; retry</code>
+<code>1W ; expire</code>
+<code>3H ) ; minimum</code>
+<code>IN NS ns1.local.zone.</code>
+<code>IN NS ns2.local.zone.</code>
+<code>1 IN PTR ns1.local.zone.</code>
+<code>1 IN PTR ns2.local.zone.</code>
+<code>1 IN PTR local.zone.</code>
+<code>1 IN PTR c1.local.zone.</code>
+<code>2 IN PTR c2.local.zone.</code>
+<code>3 IN PTR c3.local.zone.</code>
+<code>4 IN PTR c4.local.zone.</code>
+</p>
+<h3>پیکربندی Reverse DNS Slave</h3>
+<p dir="ltr">
+<code>zone "1.168.192.in-addr.arpa" {</code>
+<code>type slave;</code>
+<code>masters {192.168.1.1;};</code>
+<code>file "/var/named/local.zone.reverse.db";</code>
+<code>};</code>
+</p>
