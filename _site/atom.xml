@@ -4,7 +4,7 @@
  <title>سالار مقدم</title>
  <link href="http://salarmgh.github.io/atom.xml" rel="self"/>
  <link href="http://salarmgh.github.io/"/>
- <updated>2016-06-10T09:54:36+04:30</updated>
+ <updated>2016-06-10T09:58:03+04:30</updated>
  <id>http://salarmgh.github.io</id>
  <author>
    <name>Salar Moghaddam</name>
@@ -47,12 +47,13 @@
 &lt;/p&gt;
 &lt;p&gt;اگر از توزیع‌های دیگری استفاده می‌کنید، با استفاده از مخازن رسمی آن‌ها یا کامپایل بسته ی nmap اقدام به نصب آن بکنید.&lt;/p&gt;
 &lt;h3&gt; اسکن کردن یک IP: &lt;/h3&gt;
-&lt;!--excerpt--&gt;
+
 &lt;p dir=&quot;ltr&quot;&gt;
 &lt;code&gt;
 # nmap 127.0.0.1
 &lt;/code&gt;
 &lt;/p&gt;
+&lt;!--excerpt--&gt;
 &lt;h3&gt; اسکن کردن Hostname:&lt;/h3&gt;
 &lt;p dir=&quot;ltr&quot;&gt;
 &lt;code&gt;

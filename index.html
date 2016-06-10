@@ -14,7 +14,7 @@ title: Home
 
     {{ post.excerpt }}
 {% if post.content contains site.excerpt_separator %}
-          <a href="{{ post.url | prepend: site.baseurl }}">ادامه ی مطلب</a>
+          <a href="{{ post.url }}">ادامه ی مطلب</a>
       {% endif %}
   </div>
   {% endfor %}
