@@ -22,3 +22,4 @@ github:
   repo:           https://github.com/salarmgh
 gems: [jekyll-paginate, jekyll-gist]
 dir: rtl
+excerpt_separator: "<!--excerpt-->"
