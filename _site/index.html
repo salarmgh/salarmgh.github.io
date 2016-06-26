@@ -212,13 +212,38 @@ $ sudo chmod -R 777 /var/www/html/
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/%D8%B3%D9%84%D8%A7%D9%85-%D8%AF%D9%86%DB%8C%D8%A7">
-        سلام دنیا
+      <a href="/%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA-%D8%AF%DB%8C%D8%B3%DA%A9-%D8%A8%D8%A7-lvm">
+        مدیریت دیسک با lvm
       </a>
     </h1>
 
-    <p>معمولا سنت بر اینه که اولین پست وبلاگ، سلام دنیا باشه. منم صرفا نخواستم سنت شکنی کرده باشم! :)<br />
-صفحه ی درباره ی من رو هم بعدا می نویسم.</p>
+    <p>lvm این امکان رو به ما میده که دیسک رو به صورت زنده تغییر سایز بدیم.</p>
+<h3>نحوه ی نصب lvm</h3>
+<p>دبیان:</p>
+<p><code># apt install lvm</code></p>
+<p>سنت او اس:</p>
+<p><code># yum install lvm</code></p>
+<h3>آماده سازی دیسک</h3>
+<p>برای کار با lvm ابتدا باید نوع دیسک رو تعیین کنیم:</p>
+<p><code># fdisk /dev/sdX</code></p>
+<p>اجرای ابزار fdisk روی دیسک مورد نظر</p>
+<p><code>n</code></p>
+<p>ایجاد پارتیشن جدید</p>
+<p><code>t</code></p>
+<p>تغییر نوع پارتیشن</p>
+<p><code>8e</code></p>
+<p>انتخاب نوع lvm</p>
+<h3>ایجاد یک Physical volume</h3>
+<p>برای مدیریت دیسک ها باید اون ها رو تبدیل به Physical volume کنیم</p>
+<p><code>pvcreate /dev/sdX1</code></p>
+<h3>ایجاد یک Volume group</h3>
+<p>حالا پارتیشن رو به یک گروه تخصیص میدیم</p>
+<p><code>vgcreate vg1 /dev/sdX1</code></p>
+<h3>ایجاد یک Logical volume</h3>
+<p>حالا با داشتن گروه، می تونیم پارتیشن منطقی درست کنیم.</p>
+<p><code>lvcreate vg1 -L+8G</code></p>
+<p>حالا پارتیشن آمادست، میتونید روش فایل سیستم بریزید</p>
+<p><code># mkfs.ext4 /dev/sdX1</code></p>
 
 
   </div>
@@ -227,7 +252,7 @@ $ sudo chmod -R 777 /var/www/html/
 
 <div class="pagination">
   
-    <span class="pagination-item older">نوشته های کهنه تر</span>
+    <a class="pagination-item older" href="/page2">نوشته های کهنه تر</a>
   
   
     <span class="pagination-item newer">نوشته های تازه تر</span>

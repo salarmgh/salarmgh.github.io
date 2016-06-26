@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>
+    
+      مدیریت دیسک با lvm &middot; سالار مقدم
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="/"><img src="/public/me.jpg" /></a>
+      <h1>
+        <a href="/">
+          سالار مقدم
+        </a>
+      </h1>
+      <p class="lead" dir="ltr">*nix Sysadmin & DevOps</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="http://salarmgh.github.io/about/">دربارهٔ من</a><br />
+      <a href="mailto:salar.mgh@gmail.com">Email</a>
+      <a href="https://twitter.com/salarmgh">Twitter</a>
+      <a href="https://ir.linkedin.com/in/salarmgh">Linkedin</a>
+      <a href="https://instagram.com/salar.mgh">Instagram</a>
+      <a href="https://github.com/salarmgh">Github</a>
+      <a href="http://salarmgh.github.io/atom.xml">RSS</a>
+    </nav>
+
+    <p class="copyright" dir="ltr">&copy; 2016. <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0.</a> <br />
+.بازنشر با ذکر نام و لینک به منبع مجاز است
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post" direction="rtl">
+  <h1 class="post-title">مدیریت دیسک با lvm</h1>
+  <p>lvm این امکان رو به ما میده که دیسک رو به صورت زنده تغییر سایز بدیم.</p>
+<h3>نحوه ی نصب lvm</h3>
+<p>دبیان:</p>
+<p><code># apt install lvm</code></p>
+<p>سنت او اس:</p>
+<p><code># yum install lvm</code></p>
+<h3>آماده سازی دیسک</h3>
+<p>برای کار با lvm ابتدا باید نوع دیسک رو تعیین کنیم:</p>
+<p><code># fdisk /dev/sdX</code></p>
+<p>اجرای ابزار fdisk روی دیسک مورد نظر</p>
+<p><code>n</code></p>
+<p>ایجاد پارتیشن جدید</p>
+<p><code>t</code></p>
+<p>تغییر نوع پارتیشن</p>
+<p><code>8e</code></p>
+<p>انتخاب نوع lvm</p>
+<h3>ایجاد یک Physical volume</h3>
+<p>برای مدیریت دیسک ها باید اون ها رو تبدیل به Physical volume کنیم</p>
+<p><code>pvcreate /dev/sdX1</code></p>
+<h3>ایجاد یک Volume group</h3>
+<p>حالا پارتیشن رو به یک گروه تخصیص میدیم</p>
+<p><code>vgcreate vg1 /dev/sdX1</code></p>
+<h3>ایجاد یک Logical volume</h3>
+<p>حالا با داشتن گروه، می تونیم پارتیشن منطقی درست کنیم.</p>
+<p><code>lvcreate vg1 -L+8G</code></p>
+<p>حالا پارتیشن آمادست، میتونید روش فایل سیستم بریزید</p>
+<p><code># mkfs.ext4 /dev/sdX1</code></p>
+
+</div>
+
+    </div>
+
+  </body>
+</html>

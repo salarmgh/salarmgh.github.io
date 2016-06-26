@@ -4,7 +4,7 @@
  <title>سالار مقدم</title>
  <link href="http://salarmgh.github.io/atom.xml" rel="self"/>
  <link href="http://salarmgh.github.io/"/>
- <updated>2016-06-26T13:25:50+04:30</updated>
+ <updated>2016-06-26T14:05:53+04:30</updated>
  <id>http://salarmgh.github.io</id>
  <author>
    <name>Salar Moghaddam</name>
@@ -495,6 +495,41 @@ DocumentRoot /var/www/test: مسیر پوشه ای که باید خوانده ب
 &lt;h3&gt;روش دوم&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;sudo a2enmod userdir&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;تموم شد! فقط کافیه یه پوشه به اسم public_html تو پوشه ی خانگیتون بسازین و فایلای پروژه رو اونجا کپی کنید، حالا برای دیدن پروژه تو آدرس بار پروژه بنویسید: localhost/~USER که اینجا USER نام کاربری شماست&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>مدیریت دیسک با lvm</title>
+   <link href="http://salarmgh.github.io/%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA-%D8%AF%DB%8C%D8%B3%DA%A9-%D8%A8%D8%A7-lvm"/>
+   <updated>2016-05-12T00:00:00+04:30</updated>
+   <id>http://salarmgh.github.io/مدیریت دیسک با lvm</id>
+   <content type="html">&lt;p&gt;lvm این امکان رو به ما میده که دیسک رو به صورت زنده تغییر سایز بدیم.&lt;/p&gt;
+&lt;h3&gt;نحوه ی نصب lvm&lt;/h3&gt;
+&lt;p&gt;دبیان:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# apt install lvm&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;سنت او اس:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# yum install lvm&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;آماده سازی دیسک&lt;/h3&gt;
+&lt;p&gt;برای کار با lvm ابتدا باید نوع دیسک رو تعیین کنیم:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# fdisk /dev/sdX&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;اجرای ابزار fdisk روی دیسک مورد نظر&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;n&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;ایجاد پارتیشن جدید&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;t&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;تغییر نوع پارتیشن&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;8e&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;انتخاب نوع lvm&lt;/p&gt;
+&lt;h3&gt;ایجاد یک Physical volume&lt;/h3&gt;
+&lt;p&gt;برای مدیریت دیسک ها باید اون ها رو تبدیل به Physical volume کنیم&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pvcreate /dev/sdX1&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;ایجاد یک Volume group&lt;/h3&gt;
+&lt;p&gt;حالا پارتیشن رو به یک گروه تخصیص میدیم&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;vgcreate vg1 /dev/sdX1&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;ایجاد یک Logical volume&lt;/h3&gt;
+&lt;p&gt;حالا با داشتن گروه، می تونیم پارتیشن منطقی درست کنیم.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lvcreate vg1 -L+8G&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;حالا پارتیشن آمادست، میتونید روش فایل سیستم بریزید&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# mkfs.ext4 /dev/sdX1&lt;/code&gt;&lt;/p&gt;
 </content>
  </entry>
  
