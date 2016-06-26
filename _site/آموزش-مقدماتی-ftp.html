@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <title>
     
-      درباره ی من &middot; سالار مقدم
+      آموزش مقدماتی ftp &middot; سالار مقدم
     
   </title>
 
@@ -58,13 +58,34 @@
 
 
     <div class="content container">
-      <div class="page">
-  <h1 class="page-title">درباره ی من</h1>
-  <p>سالار مقدم هستم متولد ۱۳۷۶. DevOps، SysAdmin و توسعه دهنده ی نرم افزار هستم. <br />
-دوست دارم چیز های جدید یادبگیرم و تجربه کسب کنم.
-<br />
-عاشق سیستم عامل های یونیکسی، دنیای متن باز، موزیک و طبیعت هستم. <br />
-در حال حاضر دانشجوی مهندسی نرم افزارم.</p>
+      <div class="post" direction="rtl">
+  <h1 class="post-title">آموزش مقدماتی ftp</h1>
+  <p>نصب vsftpd</p>
+<p><code># apt install vsftpd</code>
+<code># yum install vsftpd</code></p>
+<p>سرویس ftp شما راه اندازی شد! حالا یه سری از پارامتر های پیکربندی vsftpd رو مورد بررسی قرار می دهیم.</p>
+<p><code># vi /etc/vsftpd/vsftpd.conf</code></p>
+<p>کاربر ناشناس امکان ورود داشته باشد:</p>
+<p><code>anonymous_enable=YES</code>
+<!--excerpt--></p>
+<p>فعال کردن امکان نوشتن:</p>
+<p><code>write_enable=YES</code></p>
+<p>تنظیم پرمیژن پیشفرض:</p>
+<p><code>local_umask=022</code></p>
+<p>امکان آپلود به کاربر ناشناس</p>
+<p><code>anon_upload_enable=YES</code></p>
+<p>امکان ایجاد پوشه ی جدید به کاربر ناشناس</p>
+<p><code>anon_mkdir_write_enable=YES</code></p>
+<p>امکان آپلود در مورد ascii</p>
+<p><code>ascii_upload_enable=YES</code></p>
+<p>امکان دانلود در مورد ascii</p>
+<p><code>ascii_download_enable=YES</code></p>
+<p>نمایش پیام در زمان ورود به سرور</p>
+<p><code>ftpd_banner=Welcome to blah FTP service.</code></p>
+<p>امکان ورود به یوزر های کاربران</p>
+<p><code>chroot_local_user=YES</code></p>
+<p>تعریف مسیر کاربران ناشناس</p>
+<p><code>anon_root=/home/vagrant/vsftpd</code></p>
 
 </div>
 

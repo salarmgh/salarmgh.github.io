@@ -31,7 +31,7 @@
     <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="/public/me.jpg"><img src="/public/me.jpg" /></a>
+      <a href="/"><img src="/public/me.jpg" /></a>
       <h1>
         <a href="/">
           سالار مقدم
@@ -107,6 +107,106 @@
 
 
           <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-nmap">ادامه ی مطلب</a>
+      
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-DNS">
+        آموزش مقدماتی DNS
+      </a>
+    </h1>
+
+    <h3>DNS چیست؟ </h3>
+<p>DNS مخفف Domain Name Service می باشد که جهت ترجمه ی آدرس FQDN به آدرس IP استفاده می شود.</p>
+<h3>نصب Bind</h3>
+<p>در گنو/لینوکس سرویس DNS توسط بسته ی Bind فراهم شده.</p>
+<p>نصب Bind در Debian:</p>
+<p dir="ltr">
+<code>
+# apt install bind9
+</code>
+</p>
+<p>نصب در CentOS و مشتقات آن</p>
+<p dir="ltr">
+<code>
+# apt install bind
+</code>
+</p>
+<p>مکان فایل پیکربندی در Debian:</p>
+<p dir="ltr">
+<code>
+/etc/named/named.conf
+</code>
+</p>
+<p>مکان فایل پیکربندی در CentOS:</p>
+<p dir="ltr">
+<code>
+/etc/named.conf
+</code>
+</p>
+
+
+
+          <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-DNS">ادامه ی مطلب</a>
+      
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-ftp">
+        آموزش مقدماتی ftp
+      </a>
+    </h1>
+
+    <p>نصب vsftpd</p>
+<p><code># apt install vsftpd</code>
+<code># yum install vsftpd</code></p>
+<p>سرویس ftp شما راه اندازی شد! حالا یه سری از پارامتر های پیکربندی vsftpd رو مورد بررسی قرار می دهیم.</p>
+<p><code># vi /etc/vsftpd/vsftpd.conf</code></p>
+<p>کاربر ناشناس امکان ورود داشته باشد:</p>
+<p><code>anonymous_enable=YES</code></p>
+
+
+
+          <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-ftp">ادامه ی مطلب</a>
+      
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-%D8%A2%D9%BE%D8%A7%DA%86%DB%8C-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D9%88%D8%B3%D8%B9%D9%87-%D8%AF%D9%87%D9%86%D8%AF%D9%87-%D9%87%D8%A7">
+        آموزش مقدماتی آپاچی برای توسعه دهنده ها
+      </a>
+    </h1>
+
+    <p>توسعه دهنده های زیادی رو میشناسم که با کانفیگ کردن آپاچی روی سیستمشون مشکل دارن، برای حل کردنش هم با گوگل کردن به جاهای بدی میرسن که خب طبیعی هم هست، اون ها دولوپرن و سیس ادمین نیستن :)</p>
+<p>خب من اینجا چند تا از کارهای بدی که بین توسعه دهنده ها رواج داره رو نام میبرم و دلیل بد بودنش رو هم میگم</p>
+<h3>مشکلات متداول</h3>
+<p>مشکل: می خوام فایلی رو ویرایش کنم ولی Permission denied میگیرم</p>
+<p><code>
+$ gedit /var/www/html/index.html
+</code></p>
+<p>بعد از ذخیره:</p>
+<p><code>
+Permission denied
+</code></p>
+<p>با کمی گوگل کردن به راه حل اشتباه زیر میرسن</p>
+<p><code>
+$ sudo gedit /var/www/html/index.html
+</code></p>
+<p>نتیجش میشه ساخت فایلی که مالکش کاربر root هست، بعد از کار کردن(بسته به تنظیمات) به احتمال زیاد توی مرورگرشون فایل رو نمی تونن بیین، دلیلش هم واضحه، چون دسترسی ندارن!</p>
+<p>همین مسئله باعث میشه که دوباره دست به دامن گوگل بشن که نتیجش میشه این:</p>
+<p><code>
+$ sudo chmod -R 777 /var/www/html/
+</code></p>
+<p>کد بالا دقیقا مثل این میمونه که بری پیش دزدا و بهشون بگی بفرمایید بیاین خونه ی من رو بزنید، اینم کلید!!!</p>
+<p>مسئله وقتی پیچیده تر میشه که توسعه دهنده بخواد چند تا سایت توسعه بده، و چون بلد نیست وب سرور رو کانفیگ کنه، به مشکل می خوره</p>
+<h3>و اما راه حل</h3>
+
+
+
+          <a href="/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-%D8%A2%D9%BE%D8%A7%DA%86%DB%8C-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D9%88%D8%B3%D8%B9%D9%87-%D8%AF%D9%87%D9%86%D8%AF%D9%87-%D9%87%D8%A7">ادامه ی مطلب</a>
       
   </div>
   

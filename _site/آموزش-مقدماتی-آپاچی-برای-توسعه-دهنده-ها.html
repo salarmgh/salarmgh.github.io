@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>
+    
+      آموزش مقدماتی آپاچی برای توسعه دهنده ها &middot; سالار مقدم
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="/"><img src="/public/me.jpg" /></a>
+      <h1>
+        <a href="/">
+          سالار مقدم
+        </a>
+      </h1>
+      <p class="lead" dir="ltr">*nix Sysadmin & DevOps</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="http://salarmgh.github.io/about/">دربارهٔ من</a><br />
+      <a href="mailto:salar.mgh@gmail.com">Email</a>
+      <a href="https://twitter.com/salarmgh">Twitter</a>
+      <a href="https://ir.linkedin.com/in/salarmgh">Linkedin</a>
+      <a href="https://instagram.com/salar.mgh">Instagram</a>
+      <a href="https://github.com/salarmgh">Github</a>
+      <a href="http://salarmgh.github.io/atom.xml">RSS</a>
+    </nav>
+
+    <p class="copyright" dir="ltr">&copy; 2016. <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0.</a> <br />
+.بازنشر با ذکر نام و لینک به منبع مجاز است
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post" direction="rtl">
+  <h1 class="post-title">آموزش مقدماتی آپاچی برای توسعه دهنده ها</h1>
+  <p>توسعه دهنده های زیادی رو میشناسم که با کانفیگ کردن آپاچی روی سیستمشون مشکل دارن، برای حل کردنش هم با گوگل کردن به جاهای بدی میرسن که خب طبیعی هم هست، اون ها دولوپرن و سیس ادمین نیستن :)</p>
+<p>خب من اینجا چند تا از کارهای بدی که بین توسعه دهنده ها رواج داره رو نام میبرم و دلیل بد بودنش رو هم میگم</p>
+<h3>مشکلات متداول</h3>
+<p>مشکل: می خوام فایلی رو ویرایش کنم ولی Permission denied میگیرم</p>
+<p><code>
+$ gedit /var/www/html/index.html
+</code></p>
+<p>بعد از ذخیره:</p>
+<p><code>
+Permission denied
+</code></p>
+<p>با کمی گوگل کردن به راه حل اشتباه زیر میرسن</p>
+<p><code>
+$ sudo gedit /var/www/html/index.html
+</code></p>
+<p>نتیجش میشه ساخت فایلی که مالکش کاربر root هست، بعد از کار کردن(بسته به تنظیمات) به احتمال زیاد توی مرورگرشون فایل رو نمی تونن بیین، دلیلش هم واضحه، چون دسترسی ندارن!</p>
+<p>همین مسئله باعث میشه که دوباره دست به دامن گوگل بشن که نتیجش میشه این:</p>
+<p><code>
+$ sudo chmod -R 777 /var/www/html/
+</code></p>
+<p>کد بالا دقیقا مثل این میمونه که بری پیش دزدا و بهشون بگی بفرمایید بیاین خونه ی من رو بزنید، اینم کلید!!!</p>
+<p>مسئله وقتی پیچیده تر میشه که توسعه دهنده بخواد چند تا سایت توسعه بده، و چون بلد نیست وب سرور رو کانفیگ کنه، به مشکل می خوره</p>
+<h3>و اما راه حل</h3>
+<!--excerpt-->
+<p>در صورتی که توسعه دهنده هستید و می خواید محصول خودتون رو تحویل کارفرما بدید، لطفا یک سیس ادمین استخدام کنید، چون همه چیز به نصب و تغییر دو خط کد تو کانفیگ آپاچی خلاصه نمیشه. کار رو بسپارید به یک سیس ادمین :)</p>
+<p>در صورتی که نمی خواید سرور پروداکشن رو پیاده سازی کنید و صرفا یک محیط توسعه می خواید، می تونید طبق مراحل پایین اون رو بالا بیارید</p>
+<h3>اول از همه نصب آپاچی</h3>
+<p>دبیان بیس ها</p>
+<p><code># apt install apache2</code></p>
+<p>سنت او اس بیس ها</p>
+<p><code># yum install httpd</code></p>
+<h3>روش اول</h3>
+<p>پیکربندی یک سایت در دبیان:</p>
+<p><code># vi /etc/apache2/sites-enabled/default.conf</code></p>
+<p>پیکربندی یک سایت در سنت او اس:</p>
+<p><code># vi /etc/httpd/httpd.conf</code>
+<code>
+NameVirtualHost *:80
+</code>
+<code>
+&lt;Virtualhost *:80&gt;
+</code>
+<code>
+ServerName localhost
+</code>
+<code>
+DocumentRoot /var/www/test/
+</code>
+<code>
+&lt;/Virtualhost&gt;
+</code></p>
+<p>
+<ul>
+<li>
+NameVirtualHost *:80: اگر کاربری نام دامنه ای رو وارد کرد که هدفش هر IP ای(که به سرور داده شده) و پورت درخواستی 80 بود کار های زیر رو انجام بده
+</li>
+<li>
+&lt;Virtualhost *:80&gt;: هر IP ای با پورت 80
+</li>
+<li>
+ServerName localhost: نام دامنه ای که در آدرس بار وارد می شود(باید سرویس DNS یا hosts آدرس رو به IP سرور ترجمه بکنه) پورت ۸۰ رو درخواست کرد.
+</li>
+<li>
+DocumentRoot /var/www/test: مسیر پوشه ای که باید خوانده بشه(مسیر پروژه) 
+</li>
+</ul>
+</p>
+<h3>روش دوم</h3>
+<p><code>sudo a2enmod userdir</code></p>
+<p>تموم شد! فقط کافیه یه پوشه به اسم public_html تو پوشه ی خانگیتون بسازین و فایلای پروژه رو اونجا کپی کنید، حالا برای دیدن پروژه تو آدرس بار پروژه بنویسید: localhost/~USER که اینجا USER نام کاربری شماست</p>
+
+</div>
+
+    </div>
+
+  </body>
+</html>

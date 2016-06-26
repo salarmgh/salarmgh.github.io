@@ -4,7 +4,7 @@
  <title>سالار مقدم</title>
  <link href="http://salarmgh.github.io/atom.xml" rel="self"/>
  <link href="http://salarmgh.github.io/"/>
- <updated>2016-06-10T09:58:03+04:30</updated>
+ <updated>2016-06-26T11:33:38+04:30</updated>
  <id>http://salarmgh.github.io</id>
  <author>
    <name>Salar Moghaddam</name>
@@ -222,6 +222,279 @@ $ cat ~/ips.list&lt;/code&gt;
 # nmap -sP 127.0.0.1 -o up-list.txt
 &lt;/code&gt;
 &lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>آموزش مقدماتی DNS</title>
+   <link href="http://salarmgh.github.io/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-DNS"/>
+   <updated>2016-06-09T00:00:00+04:30</updated>
+   <id>http://salarmgh.github.io/آموزش مقدماتی DNS</id>
+   <content type="html">&lt;h3&gt;DNS چیست؟ &lt;/h3&gt;
+&lt;p&gt;DNS مخفف Domain Name Service می باشد که جهت ترجمه ی آدرس FQDN به آدرس IP استفاده می شود.&lt;/p&gt;
+&lt;h3&gt;نصب Bind&lt;/h3&gt;
+&lt;p&gt;در گنو/لینوکس سرویس DNS توسط بسته ی Bind فراهم شده.&lt;/p&gt;
+&lt;p&gt;نصب Bind در Debian:&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# apt install bind9
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;نصب در CentOS و مشتقات آن&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# apt install bind
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;مکان فایل پیکربندی در Debian:&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+/etc/named/named.conf
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;مکان فایل پیکربندی در CentOS:&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+/etc/named.conf
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;!--excerpt--&gt;
+&lt;h3&gt;پیکربندی DNS Master&lt;/h3&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# vi /etc/named/named.conf # or /etc/named.conf&lt;/code&gt;
+&lt;code&gt;zone &quot;local.zone&quot; {&lt;/code&gt;
+&lt;code&gt;type master;&lt;/code&gt;
+&lt;code&gt;file &quot;/var/named/local.zone.db&quot;;&lt;/code&gt;
+&lt;code&gt;};&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;Zone نام ناحیه یا دامنه می باشد.&lt;/p&gt;
+&lt;p&gt;Type، نوع DNS سرور را تعیین می کند.&lt;/p&gt;
+&lt;p&gt;File، مسیر پیکربندی ناحیه را تعیین می کند.&lt;/p&gt;
+&lt;p&gt;پیکربندی ناحیه:&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# vi /var/named/local.zone.db&lt;/code&gt;
+&lt;code&gt;$TTL 1D local.zone. IN SOA ns1.local.zone. root.local.zone. (&lt;/code&gt;
+&lt;code&gt;3 ; serial&lt;/code&gt;
+&lt;code&gt;1D ; refresh&lt;/code&gt;
+&lt;code&gt;1H ; retry&lt;/code&gt;
+&lt;code&gt;1W ; expire&lt;/code&gt;
+&lt;code&gt;3H ) ; minimum&lt;/code&gt;
+&lt;code&gt;NS ns1.local.zone.&lt;/code&gt;
+&lt;code&gt;NS ns2.local.zone.&lt;/code&gt;
+&lt;code&gt;ns2 A 192.168.1.2&lt;/code&gt;
+&lt;code&gt;ns1 A 192.168.1.1&lt;/code&gt;
+&lt;code&gt;@ A 192.168.1.1&lt;/code&gt;
+&lt;code&gt;c1 A 192.168.1.1&lt;/code&gt;
+&lt;code&gt;c2 A 192.168.1.2&lt;/code&gt;
+&lt;code&gt;c3 A 192.168.1.3&lt;/code&gt;
+&lt;code&gt;c4 A 192.168.1.4&lt;/code&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TTL 1D زمان Time To Live را تعیین می کند که در اینجا یک روز است.&lt;/li&gt;
+&lt;li&gt;local.zone. نام دامنه را مشخص می کند.&lt;/li&gt;
+&lt;li&gt;ns1.local.zone نام Name Server را مشخص می کند.&lt;/li&gt;
+&lt;li&gt;root.local.zone ایمیل راهبر سیستم را تعیین می کند که در اینجا root@local.zone می باشد.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;بقیه ی رکورد های SOA مشخص هستند، بر اساس نیازتان تغییرشان بدید.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NS سرور Name Server را مشخص می کند.&lt;/li&gt;
+&lt;li&gt;A آدرس دامنه را به IP تبدیل می کند.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;البته که رکورد های بیشتری وجود دارد که از حوصله ی این مقاله خارج است.&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# systemctl restart bind9
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;با دستور بالا سرویس bind را دوباره راه اندازی می کنیم تا تغییرات اعمال شود.&lt;/p&gt;
+&lt;p&gt;اگر خطایی مبنی بر نداشتن دسترسی دارید، با کد زیر آن را برطرف نمایید:&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# chown named:named /var/named
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;h3&gt;پیکربندی DNS Slave&lt;/h3&gt;
+&lt;p&gt;در صورت بروز مشکل در سرور Master DNS، سرویس DNS ما می خوابه، از اونجایی که سرویس DNS از جمله سرویس های Critical شبکه محسوب میشه، بیشتر سرویس ها هم می خوابن. به همین دلیل ما نیاز به یه سرور پشتیبان داریم که از replication پشتیبانی کنه. به این سرور DNS Slave میگن.&lt;/p&gt;
+&lt;p&gt;به zone سرور Master کد زیر را اضافه کنید&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;# vi /etc/named.conf # vi /etc/named/named.conf&lt;/code&gt;
+&lt;code&gt;allow-transfer {192.168.1.2;};&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;در سرور Slave&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;# vi /etc/named.conf # vi /etc/named/named.conf&lt;/code&gt;
+&lt;code&gt;zone &quot;local.zone&quot; {&lt;/code&gt;
+&lt;code&gt;type slave;&lt;/code&gt;
+&lt;code&gt;masters {192.168.1.1;};&lt;/code&gt;
+&lt;code&gt;file &quot;/var/named/local.zone.db&quot;;&lt;/code&gt;
+&lt;code&gt;};&lt;/code&gt;
+&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;
+# systemctl restart bind9
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;h3&gt;پیکربندی DNS Forwarder&lt;/h3&gt;
+&lt;p&gt;در صورتی که نخوایم بار DNS شبکه روی سرور نیافته از DNS Forwarder استفاده می کنیم.&lt;/p&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;# vi /etc/named/named.conf # or /etc/named.conf&lt;/code&gt;
+&lt;code&gt;zone &quot;local.zone&quot; {&lt;/code&gt;
+&lt;code&gt;type forward;&lt;/code&gt;
+&lt;code&gt;forwarders {192.168.1.1;};&lt;/code&gt;
+&lt;code&gt;};
+&lt;/code&gt;
+&lt;/p&gt;
+&lt;h3&gt;پیکربندی Reverse DNS&lt;/h3&gt;
+&lt;p&gt;این پیکربندی آدرس IP را به آدرس Domain ترجمه می کند&lt;/p&gt;
+&lt;p dir=&quot;rtl&quot;&gt;
+&lt;code&gt;# vi /etc/named/named.conf # or vi /etc/named.conf&lt;/code&gt;
+&lt;code&gt;zone &quot;1.168.192.in-addr.arpa&quot; {&lt;/code&gt;
+&lt;code&gt;type master;&lt;/code&gt;
+&lt;code&gt;file &quot;/var/named/local.zone.reverse.db&quot;;&lt;/code&gt;
+&lt;code&gt;};&lt;/code&gt;
+&lt;p&gt;پایگاه داده&lt;/p&gt;
+&lt;code&gt;# vi /var/named/local.zone.reverse.db&lt;/code&gt;
+&lt;code&gt;$TTL 1D&lt;/code&gt;
+&lt;code&gt;1.168.192.in-addr.arpa.&lt;/code&gt;
+&lt;code&gt;IN SOA ns1.local.zone.&lt;/code&gt;
+&lt;code&gt;root.local.zone. (&lt;/code&gt;
+&lt;code&gt;3 ; serial&lt;/code&gt;
+&lt;code&gt;1D ; refresh&lt;/code&gt;
+&lt;code&gt;1H ; retry&lt;/code&gt;
+&lt;code&gt;1W ; expire&lt;/code&gt;
+&lt;code&gt;3H ) ; minimum&lt;/code&gt;
+&lt;code&gt;IN NS ns1.local.zone.&lt;/code&gt;
+&lt;code&gt;IN NS ns2.local.zone.&lt;/code&gt;
+&lt;code&gt;1 IN PTR ns1.local.zone.&lt;/code&gt;
+&lt;code&gt;1 IN PTR ns2.local.zone.&lt;/code&gt;
+&lt;code&gt;1 IN PTR local.zone.&lt;/code&gt;
+&lt;code&gt;1 IN PTR c1.local.zone.&lt;/code&gt;
+&lt;code&gt;2 IN PTR c2.local.zone.&lt;/code&gt;
+&lt;code&gt;3 IN PTR c3.local.zone.&lt;/code&gt;
+&lt;code&gt;4 IN PTR c4.local.zone.&lt;/code&gt;
+&lt;/p&gt;
+&lt;h3&gt;پیکربندی Reverse DNS Slave&lt;/h3&gt;
+&lt;p dir=&quot;ltr&quot;&gt;
+&lt;code&gt;zone &quot;1.168.192.in-addr.arpa&quot; {&lt;/code&gt;
+&lt;code&gt;type slave;&lt;/code&gt;
+&lt;code&gt;masters {192.168.1.1;};&lt;/code&gt;
+&lt;code&gt;file &quot;/var/named/local.zone.reverse.db&quot;;&lt;/code&gt;
+&lt;code&gt;};&lt;/code&gt;
+&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>آموزش مقدماتی ftp</title>
+   <link href="http://salarmgh.github.io/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-ftp"/>
+   <updated>2016-05-13T00:00:00+04:30</updated>
+   <id>http://salarmgh.github.io/آموزش مقدماتی ftp</id>
+   <content type="html">&lt;p&gt;نصب vsftpd&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# apt install vsftpd&lt;/code&gt;
+&lt;code&gt;# yum install vsftpd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;سرویس ftp شما راه اندازی شد! حالا یه سری از پارامتر های پیکربندی vsftpd رو مورد بررسی قرار می دهیم.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# vi /etc/vsftpd/vsftpd.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;کاربر ناشناس امکان ورود داشته باشد:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;anonymous_enable=YES&lt;/code&gt;
+&lt;!--excerpt--&gt;&lt;/p&gt;
+&lt;p&gt;فعال کردن امکان نوشتن:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;write_enable=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;تنظیم پرمیژن پیشفرض:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;local_umask=022&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;امکان آپلود به کاربر ناشناس&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;anon_upload_enable=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;امکان ایجاد پوشه ی جدید به کاربر ناشناس&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;anon_mkdir_write_enable=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;امکان آپلود در مورد ascii&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ascii_upload_enable=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;امکان دانلود در مورد ascii&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ascii_download_enable=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;نمایش پیام در زمان ورود به سرور&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ftpd_banner=Welcome to blah FTP service.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;امکان ورود به یوزر های کاربران&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;chroot_local_user=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;تعریف مسیر کاربران ناشناس&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;anon_root=/home/vagrant/vsftpd&lt;/code&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>آموزش مقدماتی آپاچی برای توسعه دهنده ها</title>
+   <link href="http://salarmgh.github.io/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%85%D9%82%D8%AF%D9%85%D8%A7%D8%AA%DB%8C-%D8%A2%D9%BE%D8%A7%DA%86%DB%8C-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D9%88%D8%B3%D8%B9%D9%87-%D8%AF%D9%87%D9%86%D8%AF%D9%87-%D9%87%D8%A7"/>
+   <updated>2016-05-13T00:00:00+04:30</updated>
+   <id>http://salarmgh.github.io/ آموزش مقدماتی آپاچی برای توسعه دهنده ها</id>
+   <content type="html">&lt;p&gt;توسعه دهنده های زیادی رو میشناسم که با کانفیگ کردن آپاچی روی سیستمشون مشکل دارن، برای حل کردنش هم با گوگل کردن به جاهای بدی میرسن که خب طبیعی هم هست، اون ها دولوپرن و سیس ادمین نیستن :)&lt;/p&gt;
+&lt;p&gt;خب من اینجا چند تا از کارهای بدی که بین توسعه دهنده ها رواج داره رو نام میبرم و دلیل بد بودنش رو هم میگم&lt;/p&gt;
+&lt;h3&gt;مشکلات متداول&lt;/h3&gt;
+&lt;p&gt;مشکل: می خوام فایلی رو ویرایش کنم ولی Permission denied میگیرم&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;
+$ gedit /var/www/html/index.html
+&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;بعد از ذخیره:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;
+Permission denied
+&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;با کمی گوگل کردن به راه حل اشتباه زیر میرسن&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;
+$ sudo gedit /var/www/html/index.html
+&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;نتیجش میشه ساخت فایلی که مالکش کاربر root هست، بعد از کار کردن(بسته به تنظیمات) به احتمال زیاد توی مرورگرشون فایل رو نمی تونن بیین، دلیلش هم واضحه، چون دسترسی ندارن!&lt;/p&gt;
+&lt;p&gt;همین مسئله باعث میشه که دوباره دست به دامن گوگل بشن که نتیجش میشه این:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;
+$ sudo chmod -R 777 /var/www/html/
+&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;کد بالا دقیقا مثل این میمونه که بری پیش دزدا و بهشون بگی بفرمایید بیاین خونه ی من رو بزنید، اینم کلید!!!&lt;/p&gt;
+&lt;p&gt;مسئله وقتی پیچیده تر میشه که توسعه دهنده بخواد چند تا سایت توسعه بده، و چون بلد نیست وب سرور رو کانفیگ کنه، به مشکل می خوره&lt;/p&gt;
+&lt;h3&gt;و اما راه حل&lt;/h3&gt;
+&lt;!--excerpt--&gt;
+&lt;p&gt;در صورتی که توسعه دهنده هستید و می خواید محصول خودتون رو تحویل کارفرما بدید، لطفا یک سیس ادمین استخدام کنید، چون همه چیز به نصب و تغییر دو خط کد تو کانفیگ آپاچی خلاصه نمیشه. کار رو بسپارید به یک سیس ادمین :)&lt;/p&gt;
+&lt;p&gt;در صورتی که نمی خواید سرور پروداکشن رو پیاده سازی کنید و صرفا یک محیط توسعه می خواید، می تونید طبق مراحل پایین اون رو بالا بیارید&lt;/p&gt;
+&lt;h3&gt;اول از همه نصب آپاچی&lt;/h3&gt;
+&lt;p&gt;دبیان بیس ها&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# apt install apache2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;سنت او اس بیس ها&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# yum install httpd&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;روش اول&lt;/h3&gt;
+&lt;p&gt;پیکربندی یک سایت در دبیان:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# vi /etc/apache2/sites-enabled/default.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;پیکربندی یک سایت در سنت او اس:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# vi /etc/httpd/httpd.conf&lt;/code&gt;
+&lt;code&gt;
+NameVirtualHost *:80
+&lt;/code&gt;
+&lt;code&gt;
+&amp;lt;Virtualhost *:80&amp;gt;
+&lt;/code&gt;
+&lt;code&gt;
+ServerName localhost
+&lt;/code&gt;
+&lt;code&gt;
+DocumentRoot /var/www/test/
+&lt;/code&gt;
+&lt;code&gt;
+&amp;lt;/Virtualhost&amp;gt;
+&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+NameVirtualHost *:80: اگر کاربری نام دامنه ای رو وارد کرد که هدفش هر IP ای(که به سرور داده شده) و پورت درخواستی 80 بود کار های زیر رو انجام بده
+&lt;/li&gt;
+&lt;li&gt;
+&amp;lt;Virtualhost *:80&amp;gt;: هر IP ای با پورت 80
+&lt;/li&gt;
+&lt;li&gt;
+ServerName localhost: نام دامنه ای که در آدرس بار وارد می شود(باید سرویس DNS یا hosts آدرس رو به IP سرور ترجمه بکنه) پورت ۸۰ رو درخواست کرد.
+&lt;/li&gt;
+&lt;li&gt;
+DocumentRoot /var/www/test: مسیر پوشه ای که باید خوانده بشه(مسیر پروژه) 
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;h3&gt;روش دوم&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sudo a2enmod userdir&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;تموم شد! فقط کافیه یه پوشه به اسم public_html تو پوشه ی خانگیتون بسازین و فایلای پروژه رو اونجا کپی کنید، حالا برای دیدن پروژه تو آدرس بار پروژه بنویسید: localhost/~USER که اینجا USER نام کاربری شماست&lt;/p&gt;
 </content>
  </entry>
  
